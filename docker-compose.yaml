@@ -1,0 +1,31 @@
+#django web
+#postgresql
+#nocodb
+
+version: '3'
+
+services:
+  django:
+    build: .
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes: 
+    - .:/usr/src/app
+    ports:
+    - "8000:8000"
+    depends_on:
+    - pgdb
+  pgdb:
+    image: postgres
+    container_name: pgdb
+    environment:
+      - POSTGRES_D8=postgres
+      - POSTGRES_USER=postgres
+      - POStGRES_PASSWORD=postgres
+  Nocodb:
+    image: nocodb
+    container_name: nocodb
+    environment:
+      - NOCODB_DB=nocodb
+      - NOCODB_USERS='paratchaporn.u@gmailcom'
+      - NOCODB_PASSWORD='Jern0922478820'
